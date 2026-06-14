@@ -1,11 +1,11 @@
+$(".menu").hide();
 
 //bruchbild(1,3,  $("#BruchBild"));
 function bruchbild(zähler, nenner, dort) {
-    var radius = 60;
-    var u = 150;
-    var bruch1 = 150 / nenner;
-    var restEnde = 0;
-    var restAnfang = 0;
+    var radius = 24;
+    var u = 2*Math.PI * radius;
+    var anteilNenner = u / nenner;
+    var positionI = 0;
     var kommazahl = Math.abs(zähler) / nenner; //absolut also betrag
     dort.empty();
 
@@ -16,23 +16,21 @@ function bruchbild(zähler, nenner, dort) {
         //  dort.children().first().show(); //erstes Element muss drin bleiben
         dort.children().first().css("opacity", "0.8");
         //var hier = dort.parent().chidren().eq(i);
-        bruchteilebauen(nenner, dort);
+        bruchteilebauen(radius, nenner, dort);
         //behälter leeren, nur 1 kreis beibehalten
 
-
         for (i = 0; i < nenner; i++) {              //blau färben, vor-Einteilung /Stückelung
-            restAnfang = i * bruch1;
-            restEnde = 150 - bruch1 - restAnfang;
+            positionI = i * anteilNenner;
 
-            var a = "4," + restAnfang + " , " + bruch1 + " ,0.2";
+            var a = "4," + positionI + " , " + anteilNenner + " ,0";
 
             dort.children().first().find(".teil").eq(i).css("stroke-dasharray", a);
             //  dort.css("background-color","green");
 
-            if (i % 2 == 0) {
-                dort.children().first().find(".teil").eq(i).css("stroke", "#202020"); //steelblue
+            if (i % 2 === 0) {
+                dort.children().first().find(".teil").eq(i).css("stroke", "#2E2E2E"); //steelblue
             } else {
-                dort.children().first().find(".teil").eq(i).css("stroke", "#202020"); //#3366ff
+                dort.children().first().find(".teil").eq(i).css("stroke", "#282828"); //#3366ff
             }
         }
 
@@ -44,7 +42,7 @@ function bruchbild(zähler, nenner, dort) {
 
 
         for (f = 0; f < Math.abs(zähler); f++) {      //rot färben //muss unterschieden werden für größer 1
-            if (f % 2 == 0) {
+            if (f % 2 === 0) {
                 //  dort.children().first().find(".teil").eq(f).css("stroke","#b30000");
                 for (k = 0; k < (kommazahl); k++) {
                     if ((f >= k * nenner) && (f < (k + 1) * nenner)) {
@@ -74,7 +72,7 @@ function bruchbild(zähler, nenner, dort) {
 }
 
 
-function bruchteilebauen(nenner, dort) {
+function bruchteilebauen(radius, nenner, dort) {
     //alert(nenner + "   " + dort);
     for (j = 0; j < nenner; j++) {
         var svgNS = "http://www.w3.org/2000/svg";
@@ -83,7 +81,7 @@ function bruchteilebauen(nenner, dort) {
         circle.setAttributeNS(null, "class", "teil");
         circle.setAttributeNS(null, "cx", "55");
         circle.setAttributeNS(null, "cy", "55");
-        circle.setAttributeNS(null, "r", "24");
+        circle.setAttributeNS(null, "r", ""+radius);
         circle.setAttributeNS(null, "stroke-width", "48");
         circle.setAttributeNS(null, "stroke-dasharray", "0,0,0,0");
 

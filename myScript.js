@@ -154,12 +154,12 @@ function inputMachen(objekt, aufgabe) {
     boxWähler.children().eq(0).focus();
     $("#inputFeld").keypress(
         function (e) {
-            if (e.keyCode == 13) {
+            if (e.keyCode === 13) {
                 var textUser = boxWähler.children().eq(0).val();    // Der Value, also der eingegebene Text wird ausgelesen aus der Zelle und in textUser gespeichert.
                 boxWähler.empty();
                 var newUserElement = "<p style='font-size:24pt' >".concat(textUser, "</p>");
 
-                if (textUser == "") {
+                if (textUser === "") {
                     boxWähler.append(inhaltsspeicher);
                 } else {
                     boxWähler.append(newUserElement);
@@ -167,7 +167,24 @@ function inputMachen(objekt, aufgabe) {
                     ergebnischeck(aufgabe);//allles wird als bruch gemalt und ggf hintergrund markiert
                     //Feedback:
                 }
+                inputMachen($(objekt).next().next(), aufgabe)
             } //enter
+        }
+    );
+    $("#inputFeld").blur(
+        function (e) {
+            var textUser = boxWähler.children().eq(0).val();    // Der Value, also der eingegebene Text wird ausgelesen aus der Zelle und in textUser gespeichert.
+            boxWähler.empty();
+            var newUserElement = "<p style='font-size:24pt' >".concat(textUser, "</p>");
+
+            if (textUser === "") {
+                boxWähler.append(inhaltsspeicher);
+            } else {
+                boxWähler.append(newUserElement);
+
+                ergebnischeck(aufgabe);//allles wird als bruch gemalt und ggf hintergrund markiert
+                //Feedback:
+            }
         }
     );
 }
@@ -185,7 +202,7 @@ function ergebnischeck(aufgabe) {
     var ergebnis = aufgabe[4] / aufgabe[5];
 
     //erster Bruch
-    if ((isNaN(zähler1)) || (isNaN(nenner1)) || (zähler1 == "") || (nenner1 == "")) {
+    if ((isNaN(zähler1)) || (isNaN(nenner1)) || (zähler1 === "") || (nenner1 === "")) {
     } else {
         var a1 = aufgabe[0] / aufgabe[1];
         var l1 = zähler1 / nenner1;
@@ -198,17 +215,17 @@ function ergebnischeck(aufgabe) {
             //erweitern : 1. bruch muss Aufgabenstellung entsprechen:
             var erweiterungsZ = aufgabe[8][0];
             if ((zeichen == "erweitern") && (zähler1 == aufgabe[0] * erweiterungsZ)) {
-                $(".zählerböxchen").parent().eq(2).css("background-color", "darkgreen");
+                $(".zählerböxchen").parent().eq(2).css("background-color", "#2E7D32");//grün
             } else if ((zeichen == "erweitern") && (zähler1 != aufgabe[0] * erweiterungsZ)) {
                 //richtig erweitert, entspricht aber nicht der aufgabenstellung:
-                $(".zählerböxchen").parent().eq(2).css("background-color", "yellow");
+                $(".zählerböxchen").parent().eq(2).css("background-color", "#FBC02D");//gelb
                 //		alert(zähler1 + " " + aufgabe[0] + " " + erweiterungsZ);
             } else { //hier bei addition auf gleichen Nenner achten?
-                $(".zählerböxchen").parent().eq(2).css("background-color", "darkgreen");
+                $(".zählerböxchen").parent().eq(2).css("background-color", "#2E7D32");//grün
             }
 
         } else {
-            $(".zählerböxchen").parent().eq(2).css("background-color", "purple");
+            $(".zählerböxchen").parent().eq(2).css("background-color", "#6A1B9A");//lilA
         }
     }
 
@@ -231,17 +248,17 @@ function ergebnischeck(aufgabe) {
         if (a2 == l2) {
             var erweiterungsZ = aufgabe[8][1];
             if ((zeichen == "erweitern") && (zähler2 == zähler1 / erweiterungsZ)) {
-                $(".zählerböxchen").parent().eq(3).css("background-color", "darkgreen");
+                $(".zählerböxchen").parent().eq(3).css("background-color", "#2E7D32");//GRÜN
             } else if ((zeichen == "erweitern") && (zähler2 != zähler1 / erweiterungsZ)) {
                 //richtig erweitert, entspricht aber nicht der aufgabenstellung:
-                $(".zählerböxchen").parent().eq(3).css("background-color", "yellow");
+                $(".zählerböxchen").parent().eq(3).css("background-color", "#FBC02D");//GELB
                 alert(zähler2 + " = " + zähler1 + "  :  " + erweiterungsZ);
             } else { //hier bei addition auf gleichen Nenner achten?
-                $(".zählerböxchen").parent().eq(3).css("background-color", "darkgreen");
+                $(".zählerböxchen").parent().eq(3).css("background-color", "#2E7D32");
             }
 
         } else {
-            $(".zählerböxchen").parent().eq(3).css("background-color", "purple");
+            $(".zählerböxchen").parent().eq(3).css("background-color", "#6A1B9A");
         }
     }
 
@@ -256,16 +273,16 @@ function ergebnischeck(aufgabe) {
         if (ergebnis == l3) {
             var erweiterungsZ = aufgabe[8][2];
             if ((zeichen == "erweitern") && (zähler3 == zähler2 / erweiterungsZ)) {
-                $(".zählerböxchen").parent().eq(4).css("background-color", "darkgreen");
+                $(".zählerböxchen").parent().eq(4).css("background-color", "#2E7D32");
             } else if ((zeichen == "erweitern") && (zähler1 != zähler2 / erweiterungsZ)) {
                 //richtig erweitert, entspricht aber nicht der aufgabenstellung:
-                $(".zählerböxchen").parent().eq(4).css("background-color", "yellow");
+                $(".zählerböxchen").parent().eq(4).css("background-color", "#FBC02D");
             } else { //hier bei addition auf gleichen Nenner achten?
-                $(".zählerböxchen").parent().eq(4).css("background-color", "darkgreen");
+                $(".zählerböxchen").parent().eq(4).css("background-color", "#2E7D32");
             }
 
         } else {
-            $(".zählerböxchen").parent().eq(4).css("background-color", "purple");
+            $(".zählerböxchen").parent().eq(4).css("background-color", "#6A1B9A");
         }
     }
 

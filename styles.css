@@ -128,11 +128,7 @@
 /* Kreis-RAND*/
 
 #innenkreis {
-    fill: green;
-}
-
-#aussenkreis {
-    fill: transparent;
+    fill: gray;
 }
 
 /* */
