@@ -56,9 +56,15 @@ $("#Aufgabenübersicht").find("p").click(function () {
             $(".bruchBox").eq(0).hide();  //1. bruch wird nicht benötigt beim angeben.
             $(".gleichBox").hide();
 
-            mittehide();
-            $(".bilderFeld .bruchbildböxchen").eq(1).hide();
+            //mitte ausblenden
+            $(".bilderFeld .bruchbildböxchen").eq(2).hide();
+            $(".bilderFeld .bruchbildböxchen").eq(3).hide();
+            $(".bruchBox").eq(2).hide();
+            $(".bruchBox").eq(3).hide();
+            $(".operatorBox").eq(1).hide();
+            $(".gleichBox").eq(0).hide();
 
+            $(".bilderFeld .bruchbildböxchen").eq(1).hide();
             $("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7]);
             break;
         case 1 :
@@ -76,7 +82,14 @@ $("#Aufgabenübersicht").find("p").click(function () {
             aufgabe = additionsaufgabe("*");
             $(".operatorBox").children().eq(0).text("*");
             $("#Aufgabentext").children().eq(1).children().eq(0).text(aufgabe[7]);
-            mittehide();
+            //mitte ausblenden
+            $(".bilderFeld .bruchbildböxchen").eq(2).hide();
+            $(".bilderFeld .bruchbildböxchen").eq(3).hide();
+            $(".bruchBox").eq(2).hide();
+            $(".bruchBox").eq(3).hide();
+            $(".operatorBox").eq(1).hide();
+            $(".gleichBox").eq(0).hide();
+
             break;
         case 4:
             aufgabe = additionsaufgabe(":");
@@ -115,16 +128,6 @@ $("#Aufgabenübersicht").find("p").click(function () {
         inputMachen($(this), aufgabe);
     });
 }); //ende click links
-
-function mittehide() {
-    $(".bilderFeld .bruchbildböxchen").eq(2).hide();
-    $(".bilderFeld .bruchbildböxchen").eq(3).hide();
-    $(".bruchBox").eq(2).hide();
-    $(".bruchBox").eq(3).hide();
-    $(".operatorBox").eq(1).hide();
-    $(".gleichBox").eq(0).hide();
-}
-
 
 function linkeSeiteschreiben() {
     for (i = 0; i < iconString.length; i++) {
