@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang='de'>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+    </script>
+    <meta charset='UTF-8'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maddä-train</title>
+    <!--android Icons der Website:-->
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <!--meine css:-->
+    <link rel='stylesheet' href='styles.css'/>
+    <!--LATEX+++++++++++++++++(MAthJax) ++ alte version schneller aber schlechter: "output/NativeMML"-->
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+         jax: ["input/TeX","input/MathML","output/SVG", "output/PreviewHTML"],
+        extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js", "fast-preview.js", "AssistiveMML.js", "a11y/accessibility-menu.js"],
+        TeX: {
+            extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"]
+        },
+       tex2jax: {
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            processEscapes: true
+        },
+       SVG:{
+           font: "Gyre-Pagella",
+           scale:100,
+           undefinedFamily: "STIXGeneral, 'Arial Unicode MS', serif",
+           mtextFontInherit: true,
+           addMMLclasses: false, //some css style-stuff
+           matchFontHeight: true,
+           styles: {
+               ".MathJax_Display": {
+                "text-align": "center",
+                    margin:       "1em 0em"
+                },
+
+            ".MathJax .merror": {
+                "background-color": "#FFFF88",
+                color:   "#CC0000",
+                border:  "1px solid #CC0000",
+                padding: "1px 3px",
+                "font-style": "normal",
+                "font-size":  "50%"
+            }
+           }
+       },
+       PreviewHTML: {
+            scale: 100
+        }
+        });
+
+    </script>
+    <script type="text/javascript" async
+            src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=default">
+    </script>
+</head>
+<body>
+<div class='flex-wrap page'>
+    <!-- linke Leiste:-->
+    <div class='flex-wrap aufgabenübersicht c con' id="Aufgabenübersicht">
+    </div>
+
+    <!-- mainpage:-->
+    <div class='flex-wrap rechtepage'>
+        <div class="flex-wrap innerpage1 c con">
+            <div class='main' id="Aufgabentext">
+                <div class="Nüberschrift">
+                    <h1>Bruchrechnen</h1>
+                </div>
+                <div style="text-align:center">
+                    <p> Viel Erfolg beim Üben und Lernen! <br>Wähle eine Aufgabe
+                        und löse sie!
+                    </p>
+                </div>
+                <div class="bilderFeld">
+
+                </div>
+            </div>
+            <div class='main' id="Lösungstext">
+                <div>
+
+                </div>
+                <div style="text-align:center" id="aufgabenFeld">
+                    <p>
+                    </p>
+                </div>
+            </div>
+
+            <div class="printArea">
+
+            </div>
+
+        </div>
+        <div class="bruchbildböxchen" id="BruchbildBox">
+            <svg opacity="0" height="110pt" viewBox="0 0 110 110" id="BruchBild" xmlns="http://www.w3.org/2000/svg"
+                 xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="tiny" fill="none">
+                <circle id="aussenkreis" cx="55" cy="55" r="50"/>
+                <circle id="innenkreis" cx="55" cy="55" r="48"/>
+            </svg>
+        </div>
+
+    </div>
+</div>
+<script src="bruchaufgaben.js"></script>
+<script src="bruchteil.js"></script>
+<script src="myScript.js"></script>
+</body>
+</html>
