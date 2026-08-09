@@ -16,7 +16,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="./png/apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="./png/apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./png/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="./png/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./png/android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./png/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./png/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./png/favicon-16x16.png">
@@ -72,48 +72,31 @@
     </script>
 </head>
 <body>
-<div class='flex-wrap page'>
+<div class='page'>
     <!-- linke Leiste:-->
-    <div class='flex-wrap aufgabenübersicht c con' id="Aufgabenübersicht">
+    <div id="menu">
+    <div id="Aufgabenübersicht">
+    </div>
+    <h1>Bruchrechnen</h1>
     </div>
 
     <!-- mainpage:-->
-    <div class='flex-wrap rechtepage'>
-        <div class="flex-wrap innerpage1 c con">
-            <div class='main' id="Aufgabentext">
-                <div class="Nüberschrift">
-                    <h1>Bruchrechnen</h1>
-                </div>
-                <div style="text-align:center">
-                    <p> Viel Erfolg beim Üben und Lernen! <br>Wähle eine Aufgabe
-                        und löse sie!
-                    </p>
-                </div>
+    <div class='rechtepage'>
+        <div class="innerpage1 c con">
+            <div id="Aufgabentext">
                 <div class="bilderFeld">
 
                 </div>
             </div>
-            <div class='main' id="Lösungstext">
-                <div>
-
-                </div>
-                <div style="text-align:center" id="aufgabenFeld">
+            <div id="Lösungstext">
+                <div id="aufgabenFeld">
                     <p>
                     </p>
                 </div>
             </div>
-
-            <div class="printArea">
-
+            <div id="Hinweistexte">
             </div>
 
-        </div>
-        <div class="bruchbildböxchen" id="BruchbildBox">
-            <svg opacity="0" height="110pt" viewBox="0 0 110 110" id="BruchBild" xmlns="http://www.w3.org/2000/svg"
-                 xmlns:xlink="http://www.w3.org/1999/xlink" baseProfile="tiny" fill="none">
-                <circle id="aussenkreis" cx="55" cy="55" r="50"/>
-             <!--   <circle id="innenkreis" cx="55" cy="55" r="50"/>-->
-            </svg>
         </div>
 
     </div>
