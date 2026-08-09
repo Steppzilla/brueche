@@ -13,7 +13,7 @@
     --metall2-bg: rgb(174, 190, 231);
 
     --metall3-bg: rgb(206, 215, 243);
-    --metall3-line: #969393;
+    --metall3-line: #314b7e;
 
     --metall4-bg: #5068a6;
     --metall4-line: #FFFFFF;
@@ -59,6 +59,8 @@ h1 {
     height: 100%;
     justify-content: center;
     border-radius: 10pt;
+    background-color: var(--metall1-bg);
+    margin-left: 3pt;
     /* background-color: #3a537e; *//* blau 32466F blau 2 202F55  grau 282828*/
 }
 
@@ -229,6 +231,7 @@ h1 {
 /* KREIS design */
 
 .kreisDiagramm {
+
 }
 
 
