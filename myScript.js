@@ -131,14 +131,14 @@ function ergebnischeck(aufgabe) {
         bruchbild(zaehler1, nenner1, ort2, 24);
 
         if (a1 === l1) {
-            $(".zählerböxchen").parent().eq(0).css("background-color", "#2E7D32");//gruen?
+            $(".zählerböxchen").parent().eq(0).css("background-color", "var(--richtig)");//gruen?
             $("#Hinweistexte").empty();
             $("#Hinweistexte").append("<p> SUPER! Für eine neue Aufgabe klicke oben links auf das Auge</p>");
             ort2.empty();
             //STOPPE AUFGABE und EINGABEMöglichkeit??
 
         } else {
-            $(".zählerböxchen").parent().eq(0).css("background-color", "#6A1B9A");//lilA
+            $(".zählerböxchen").parent().eq(0).css("background-color", "var(--falsch)");//lilA
             $("#Hinweistexte").empty();
             let hinweisText1Vorhanden = zaehler1 != aufgabe.brueche[0].zaehler;
             console.log(hinweisText1Vorhanden);

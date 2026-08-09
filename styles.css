@@ -6,22 +6,64 @@
     font-family: Roboto, Helvetica, Times New Roman, serif;
 }
 
-h1{display: inline-flex}
-#menu{
-  display: grid;
+:root {
+    --metall1-bg: rgb(186, 194, 232);
+    --metall1-highlight-opacity: 0.10;
+
+    --metall2-bg: rgb(174, 190, 231);
+
+    --metall3-bg: rgb(206, 215, 243);
+    --metall3-line: #969393;
+
+    --metall4-bg: #5068a6;
+    --metall4-line: #FFFFFF;
+    --metall4-line-opacity: 0.14;
+    --metall4-dark-line: #4d6491;
+    --metall4-dark-line-opacity: 0.10;
+
+    --metall5-bg: #5d74a1;
+    --metall5-line: #FFFFFF;
+    --metall5-line-opacity: 0.16;
+
+    --metall6-bg: #4c6593;
+    --metall6-line: #FFFFFF;
+    --metall6-line-opacity: 0.11;
+    --metall6-dark-line: #101A30;
+    --metall6-dark-line-opacity: 0.12;
+
+    --falsch: #b7a0ef;
+    --richtig: #d4e3d4;
+    --neutral: yellow;
+
+    --heller-schatten: #9699c0;
+    --dunkler-schatten: #515177;
+}
+
+body {
+    padding-bottom: 10pt;
+    background-color: #202020;
+}
+
+h1 {
+    display: inline-flex
+}
+
+#menu {
+    display: grid;
     grid-template-columns: 20% 90%;
 }
+
 /* mittig zentrierte Bildchen von Brüchen (Kreisscheiben) */
 .bilderFeld .bruchbildboexchen {
     display: flex;
     height: 100%;
     justify-content: center;
     border-radius: 10pt;
-    background-color: #282828;
+    /* background-color: #3a537e; *//* blau 32466F blau 2 202F55  grau 282828*/
 }
 
 .zählerböxchen {
-    border-bottom: 2px darkgrey solid;
+    border-bottom: 5px #282828 solid;
     text-align: center;
     font-size: 24pt;
     min-height: 34pt;
@@ -53,20 +95,21 @@ h1{display: inline-flex}
     opacity: 0.5;
 }
 
-
 /* bruch-Eingabe-Boxen - styling */
 .bruchBox {
     display: block;
     width: 100px;
     border-radius: 5pt;
-}
+    background-color: rgb(243, 194, 170);
+    box-shadow: -1px -1px 4px #ff7b7b, 1px 1px 4px #ffc911;
+    padding: 5pt;
 
+}
 
 /*Elemente der Aufgabenübersicht (links bzw oben)*/
 .menüicon:hover {
     background-color: yellow;
 }
-
 
 .images {
     height: 100%;
@@ -76,11 +119,10 @@ h1{display: inline-flex}
 
 /* behaelter  fuer .images*/
 .pic {
-    filter: invert(60%);
+    /*filter: invert(60%);*/
     width: 30pt;
     height: 30pt;
 }
-
 
 
 #inputFeld {
@@ -100,12 +142,11 @@ h1 {
 
 
 .page {
-    color: darkgrey;
+    color: black;
     width: auto;
     margin: 0 auto;
-    background-color: #202020;
+    background-color: #ffffff; /*202020 */
 }
-
 
 
 .rechtepage {
@@ -133,21 +174,24 @@ h1 {
 }
 
 
-
 /* schmaler desktop/ Handy hochkant*/
 @media screen and (max-width: 450px) {
     body {
         width: 100%;
-      /*  background-color: red;*/
+        /*  background-color: red;*/
     }
 
     #Aufgabentext .kreisDiagramm {
         height: 100vw;
     }
 
-    #menu{grid-template-columns: 30% 70%}
+    #menu {
+        grid-template-columns: 30% 70%
+    }
 
-    h1{font-size: 10pt}
+    h1 {
+        font-size: 10pt
+    }
 
     #Lösungstext .kreisDiagramm {
         height: 10vw;
@@ -160,7 +204,7 @@ h1 {
 /* Tablet Styles oder handy breitbild*/
 @media screen and (min-width: 450px)and (max-width: 961px) {
     body {
-      /*  background-color: blue;*/
+        /*  background-color: blue;*/
     }
 
     #Lösungstext .kreisDiagramm {
@@ -172,7 +216,7 @@ h1 {
 /* Desktop Styles*/
 @media screen and (min-width: 961px) {
     body {
-       /* background-color: yellow;*/
+        /* background-color: yellow;*/
     }
 
     #Lösungstext .kreisDiagramm {
@@ -185,8 +229,6 @@ h1 {
 /* KREIS design */
 
 .kreisDiagramm {
-    filter:
-            drop-shadow(0px 0px 15px rgba(90, 90, 90, 0.8));
 }
 
 

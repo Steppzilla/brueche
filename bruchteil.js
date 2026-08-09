@@ -20,73 +20,92 @@ function bruchbild(zähler, nenner, dort, radius) {
              width="18" height="18"
              patternUnits="userSpaceOnUse"
              patternTransform="rotate(35)">
-        <rect width="18" height="18" fill="#202F55"/>
+        <rect width="18" height="18" fill="var(--metall1-bg)"/>
         <rect width="1" height="18"
-              fill="#FFFFFF" opacity="0.10"/>
+              fill="var(--metall3-line)" opacity="var(--metall1-highlight-opacity)"/>
     </pattern>
 
-    <!-- 2: Mittelblau, sehr feine Bürstung -->
-    <pattern id="metall2"
-             width="12" height="12"
-             patternUnits="userSpaceOnUse"
-             patternTransform="rotate(25)">
-        <rect width="12" height="12" fill="#32466F"/>
-        <rect width="1" height="12"
-              fill="#FFFFFF" opacity="0.14"/>
-    </pattern>
+  <!-- 2: Mittelblau, sehr feine Bürstung -->
+<pattern id="metall2"
+         width="12" height="12"
+         patternUnits="userSpaceOnUse"
+         patternTransform="rotate(25)">
+    <rect width="12" height="12"
+          fill="var(--metall2-bg)"/>
+
+    <rect width="1" height="12"
+          fill="var(--metall3-line)"
+          opacity="var(--metall1-highlight-opacity"/>
+</pattern>
     
-    <!-- 3: Dunkelblau, leicht stärkere Bürstung -->
+<!-- 3: Dunkelblau, leicht stärkere Bürstung -->
 <pattern id="metall3"
          width="14" height="14"
          patternUnits="userSpaceOnUse"
          patternTransform="rotate(-20)">
-    <rect width="14" height="14" fill="#273858"/>
+    <rect width="14" height="14"
+          fill="var(--metall3-bg)"/>
+
     <rect width="2" height="14"
-          fill="#FFFFFF" opacity="0.12"/>
+          fill="var(--metall3-line)"
+          opacity="var(--metall1-highlight-opacity)"/>
 </pattern>
+
 
 <!-- 4: Mittelblau, feine doppelte Bürstung -->
 <pattern id="metall4"
          width="20" height="20"
          patternUnits="userSpaceOnUse"
-         patternTransform="rotate(35)">
-    <rect width="20" height="20" fill="#426F9F"/>
+         patternTransform="rotate125)">
+    <rect width="20" height="20"
+          fill="var(--metall4-bg)"/>
+
     <rect width="1" height="20"
-          fill="#FFFFFF" opacity="0.14"/>
+          fill="var(--metall4-line)"
+          opacity="var(--metall4-line-opacity)"/>
+
     <rect x="9" width="1" height="20"
-          fill="#182640" opacity="0.10"/>
+          fill="var(--metall4-dark-line)"
+          opacity="var(--metall4-dark-line-opacity)"/>
 </pattern>
 
-    <!-- 5: helles Blau, feine helle Linien -->
-    <pattern id="metall5"
-             width="16" height="16"
-             patternUnits="userSpaceOnUse"
-             patternTransform="rotate(40)">
-        <rect width="16" height="16" fill="#477EB2"/>
-        <rect width="1" height="16"
-              fill="#FFFFFF" opacity="0.16"/>
-    </pattern>
 
-    <!-- 6: kräftiges Blau, stärkere Struktur -->
+<!-- 5: helles Blau, feine helle Linien -->
+<pattern id="metall5"
+         width="16" height="16"
+         patternUnits="userSpaceOnUse"
+         patternTransform="rotate(30)">
+    <rect width="16" height="16"
+          fill="var(--metall5-bg)"/>
+    <rect width="1" height="16"
+          fill="var(--metall5-line)"
+          opacity="var(--metall5-line-opacity)"/>
+</pattern>
+
 <!-- 6: gedecktes Blau, stärkere Struktur -->
 <pattern id="metall6"
          width="28" height="28"
          patternUnits="userSpaceOnUse"
          patternTransform="rotate(50)">
-    <rect width="28" height="28" fill="#3A5FA8"/>
+    <rect width="28" height="28"
+          fill="var(--metall6-bg)"/>
+
     <rect width="2" height="28"
-          fill="#FFFFFF" opacity="0.11"/>
+          fill="var(--metall6-line)"
+          opacity="var(--metall6-line-opacity)"/>
+
     <rect x="12" width="1" height="28"
-          fill="#101A30" opacity="0.12"/>
+          fill="var(--metall6-dark-line)"
+          opacity="var(--metall6-dark-line-opacity)"/>
 </pattern>
 </defs>
 </svg>
 `);
 
-        let shadow = "  drop-shadow(0px 0px 7px black) drop-shadow(0px 0px 8px rgba(70, 70, 70, 0.0))";
+        let shadow = "  drop-shadow(-0px -0px 2px var(--dunkler-schatten))";
+
         let anzahlGanze = Math.ceil(zähler / nenner); // flachengroesse: 0, 1/4=0 2/4 =  0  3/4=0
 
-        /// let shadow = "  drop-shadow(1px 1px 1px darkgrey)   drop-shadow(-1px -1px 1px darkgrey) drop-shadow(1px -1px 1px darkgrey)   drop-shadow(+1px -1px 1px darkgrey)";
         dort.show(); //erstes Element muss drin bleiben
         let erstesKind = dort.children().first();
 
@@ -102,14 +121,11 @@ function bruchbild(zähler, nenner, dort, radius) {
             //  dort.css("background-color","green");
             if (i % 3 === 0) {
                 erstesKind.find(".teil").eq(i).css("stroke", "url(#metall2)");
-                // erstesKind.find(".teil").eq(i).css("stroke", "#202F55"); //helligkeit 46 #2E2E2E--- //blaue dunkle  424875, schwarz: 323232
             } else   if (i % 3 === 1) {
                 erstesKind.find(".teil").eq(i).css("stroke", "url(#metall3)");
-                // erstesKind.find(".teil").eq(i).css("stroke", "#202F55"); //helligkeit 46 #2E2E2E--- //blaue dunkle  424875, schwarz: 323232
             }
             else {
                 erstesKind.find(".teil").eq(i).css("stroke", "url(#metall1)");
-                //   erstesKind.find(".teil").eq(i).css("stroke", "#293A63"); //#3366ff helligkeit 40     //blau dunkel 363e80, schwarz: 282828
             }
         }
 
@@ -131,6 +147,7 @@ function bruchbild(zähler, nenner, dort, radius) {
             console.log(f%nenner)
             if (f === 0 && anzahlGanze === 1 || (indexFuerGanze+1 === anzahlGanze&&f%nenner === 0)) {
                 teil.css("filter", shadow);
+
             }
             if (f % 3 === 0) {
                 console.log(f)
