@@ -4,6 +4,7 @@
     box-sizing: border-box;
     font-size: 13pt;
     font-family: Roboto, Helvetica, Times New Roman, serif;
+    color: var(--metall6-bg)
 }
 
 :root {
@@ -31,7 +32,7 @@
     --metall6-dark-line: #101A30;
     --metall6-dark-line-opacity: 0.12;
 
-    --falsch: #b7a0ef;
+    --falsch: var(--metall4-line);
     --richtig: #d4e3d4;
     --neutral: yellow;
 
@@ -45,7 +46,12 @@ body {
 }
 
 h1 {
-    display: inline-flex
+    display: inline-flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    font-size: 20pt;
+    width: 100%;
 }
 
 #menu {
@@ -65,7 +71,7 @@ h1 {
 }
 
 .zählerböxchen {
-    border-bottom: 5px #282828 solid;
+    border-bottom: 5px var(--metall6-bg) solid;
     text-align: center;
     font-size: 24pt;
     min-height: 34pt;
@@ -91,6 +97,9 @@ h1 {
     align-items: center;
     justify-content: center;
     text-align: center;
+    background-color: var(--metall1-bg);
+    padding: 10pt 0pt 10pt 0pt;
+    border-radius: 12pt;
 }
 
 #aufgabenFeld > p > .bruchbildboexchen {
@@ -102,8 +111,8 @@ h1 {
     display: block;
     width: 100px;
     border-radius: 5pt;
-    background-color: rgb(243, 194, 170);
-    box-shadow: -1px -1px 4px #ff7b7b, 1px 1px 4px #ffc911;
+    background-color: var(--metall3-bg);
+    box-shadow: -1px -1px 6px var(--metall3-line), 1px 1px 6px var(--metall4-line);
     padding: 5pt;
 
 }
@@ -121,7 +130,7 @@ h1 {
 
 /* behaelter  fuer .images*/
 .pic {
-    /*filter: invert(60%);*/
+    filter: invert(40%);
     width: 30pt;
     height: 30pt;
 }
@@ -136,18 +145,12 @@ h1 {
 }
 
 
-h1 {
-    text-align: center;
-    font-size: 20pt;
-    width: 100%;
-}
-
 
 .page {
     color: black;
     width: auto;
     margin: 0 auto;
-    background-color: #ffffff; /*202020 */
+    background-color: var(--metall3-bg); /*202020 */
 }
 
 
@@ -178,6 +181,10 @@ h1 {
 
 /* schmaler desktop/ Handy hochkant*/
 @media screen and (max-width: 450px) {
+
+    *{
+        font-size: 10pt;
+    }
     body {
         width: 100%;
         /*  background-color: red;*/
@@ -196,8 +203,8 @@ h1 {
     }
 
     #Lösungstext .kreisDiagramm {
-        height: 10vw;
-        width: 10vw;
+        height: 20vw;
+        width: 20vw;
     }
 
 }

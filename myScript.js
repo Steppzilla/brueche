@@ -73,7 +73,15 @@ function inputMachen(objekt, aufgabe) {
     //leeres Eingabefeld erzeugen und einfügen:
     var text1 = "<input type='text' class='input' id='inputFeld'>";
     boxWähler.append(text1);
-    boxWähler.children().eq(0).focus();
+
+    const feld = boxWähler.children().eq(0);
+
+    feld.focus();
+    $("#inputFeld").attr({
+        type: "text",
+        inputmode: "numeric",
+        pattern: "[0-9]*"
+    });
     $("#inputFeld").keydown(
         function (e) {
             if (e.key=== "Enter" || e.key === "/") {

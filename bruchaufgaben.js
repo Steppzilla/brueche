@@ -22,8 +22,8 @@ function additionsaufgabe(zeichen) {
     var nennerLös = nennerA;
 
     var aufgabentext = "Gib den Bruch an.";
-    var tipp1 = "Zähl die Anzahl der hellen Stückchen";
-    var tipp2 = "Zähl in wie viele Stücke der ganze Kreis aufgeteilt ist";
+    var tipp1 = " Wie viele Stückchen sind hervorgehoben?";
+    var tipp2 = " In wie viele Stücke ist der ganze Kreis aufgeteilt?";
 
 
     //var aufgabenstring = [zählerA, nennerA, zählerB, nennerB, zählerLös, nennerLös, zeichen, auftrag, auftragszahl];

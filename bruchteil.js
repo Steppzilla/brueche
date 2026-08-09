@@ -56,7 +56,7 @@ function bruchbild(zähler, nenner, dort, radius) {
 <pattern id="metall4"
          width="20" height="20"
          patternUnits="userSpaceOnUse"
-         patternTransform="rotate125)">
+         patternTransform="rotate(335)">
     <rect width="20" height="20"
           fill="var(--metall4-bg)"/>
 
