@@ -75,13 +75,58 @@
 <div class='page'>
     <!-- linke Leiste:-->
     <div id="menu">
-    <div id="Aufgabenübersicht">
+        <h1>Bruchrechnen<span id="punkte"></span></h1>
     </div>
-    <h1>Bruchrechnen</h1>
+    <div id="Aufgabenübersicht">
+
+        <label for="auswahl">Level:</label>
+        <select id="auswahl" name="auswahl">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+     <!--   <label for="taskauswahl">Aufgabe:</label>
+        <select id="taskauswahl" name="taskauswahl">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">Zufall</option>
+        </select>-->
+      <!--  <p class='menüicon pic'>-->
+      <!--      <img class="images" src="https://img.icons8.com/?size=100&id=7tg2iJatDNzj&format=png&color=000000">-->
+            <!-- var icon1 = '<img class="images" src="https://img.icons8.com/wired/64/000000/plus-math.png">';
+var icon2 = '<img class="images" src="https://img.icons8.com/wired/64/000000/minus-math.png">';
+var icon3 = '<img class="images" src="https://img.icons8.com/wired/64/000000/multiply.png">';
+var icon4 = '<img class="images" src="https://img.icons8.com/wired/64/000000/divide.png">';
+var icon5 = '<img class="images" src="https://img.icons8.com/wired/64/000000/zoom-to-extents.png">';
+//var icon6 = '<img class="images" src="https://img.icons8.com/wired/64/000000/variation.png">'; -->
+<!--        </p>-->
+    </div>
+    <!--<div id="Untertasks">
+        <p>echter Bruch</p>
+        <p>unechter Bruch</p>
+        <p>gemischter Bruch</p>
+        <p>4</p>
+        <p>5</p>
+        <p>6</p>-->
     </div>
 
     <!-- mainpage:-->
-    <div class='rechtepage'>
+    <div id='mainpage'>
         <div class="innerpage1 c con">
             <div id="Aufgabentext">
                 <div class="bilderFeld">
@@ -96,13 +141,18 @@
             </div>
             <div id="Hinweistexte">
             </div>
+           <!-- <button id="neueTaskButton">weiter</button>-->
 
         </div>
 
     </div>
 </div>
-<script src="bruchaufgaben.js"></script>
-<script src="bruchteil.js"></script>
+<script src="bruchService.js"></script>
+<script src="taskService.js"></script>
+
+<script src="clickFunctions.js"></script>
+<script src="viewFunctions.js"></script>
 <script src="myScript.js"></script>
+
 </body>
 </html>

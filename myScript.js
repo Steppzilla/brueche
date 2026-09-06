@@ -1,172 +1,207 @@
+let richtigeAntworten = 0;
 
-linkeSeiteschreiben();
+aufgabeDarstellen()
 
-$("#Aufgabenübersicht").find("p").click(function () {
-    aufgabeDarstellen($(this).index())
-}); //ende click links
+function inputVerarbeiten(boxWaehler, inhaltsspeicher) {
+    let textUser = boxWaehler.children().eq(0).val().replace("/", "");    // Der Value, also der eingegebene Text wird ausgelesen aus der Zelle und in textUser gespeichert.
+    boxWaehler.empty();
+    let newUserElement = "<span style='font-size:inherit' >".concat(textUser, "</span>");
 
-function linkeSeiteschreiben() {
-    aufgabeDarstellen(0)
-    for (i = 0; i < iconString.length; i++) {
-        if (iconString[i] != undefined) {
-            var überschrift = "<p class='menüicon pic'>" + iconString[i] + "</p>"; //frowning face
-        } else {
-            var überschrift = "<p class='menüicon pic'>" + '<img class=images src="https://img.icons8.com/wired/64/000000/question-mark.png">' + "</p>";
-        }
-        $("#Aufgabenübersicht").append(überschrift);
+    if (textUser === "") {
+        boxWaehler.append(inhaltsspeicher);
+    } else {
+        boxWaehler.append(newUserElement);
+        ergebnischeck();//alles wird als bruch gemalt und ggf hintergrund markiert
+        //Feedback:
     }
 }
 
-function aufgabeDarstellen(zahl){
-    $("#Hinweistexte").empty();
-    $("#Aufgabentext").children().eq(0).children().eq(0).html("Aufgabe");//überschrift
+function inputMachen(boxWaehler) {
 
-    var div1 = "<div class='bruchBox'></div>";
-    /* var div2 = "<div class='operatorBox'> <p class='operator'> + </p> </div>";
-     var div3 = "<div class='bruchBox'></div>";
-     var div4 = "<div class='gleichBox'><p class='operator'> = </p> </div>";
-     var div5 = "<div class='bruchBox'></div>";
-     var div6 = "<div class='operatorBox'> <p class='operator'> + </p> </div>";
-     var div7 = "<div class='bruchBox'></div>";
-     var div8 = "<div class='gleichBox'><p class='operator'> = </p> </div>";
-     var div9 = "<div class='bruchBox'></div>";*/
-
-    $("#aufgabenFeld").children().eq(0).html("")
-        .append(div1);
-
-    var zählerdiv = "<p class='zählerböxchen' ></p>";
-    var nennerdiv = "<p class='nennerböxchen' ></p>";
-
-    $(".bruchBox").append(zählerdiv)
-        .append(nennerdiv);
-
-    //svg kopieren/Kreis erstellen:
-    $(".bilderFeld").empty();
-
-    object = additionsaufgabe("angeben");
-    $("#Aufgabentext").children().eq(1).text(object.aufgabe);
-
-    $(".bilderFeld").append("<div class='bruchbildboexchen'> </div>");  // Bild vom ersten Bruch erschaffen
-    $(".bilderFeld").css("height", "100%");
-    //Bild 1 erstellen:
-    var ort1 = $(".bilderFeld").children().eq(0);
-    var ort2 = $(".bilderFeld").children().eq(1);
-
-    bruchbild(object.brueche[0].zaehler, object.brueche[0].nenner, ort1, 24);
-    // bruchbild(aufgabe[2], aufgabe[3], ort2);
-
-    //clickfunktion für lösungen
-
-    $(".bruchBox").find(".zählerböxchen ,.nennerböxchen").click(function () {
-        inputMachen($(this), object);
-    });
-}
-
-function inputMachen(objekt, aufgabe) {
+    let inputFeld = $("#inputFeld");
     //Input-Fenster löschen: (führt nicht zum error, selbst beim ersten klick,obwohl noch keins vorhanden ist... mh=?...
-    $("input").remove();
-    // Wähle die geklickte Box der Grid-Tabelle aus:
-    var boxWähler = objekt;
-    // Box leeren:
-    var inhaltsspeicher = boxWähler.children();
-    boxWähler.empty();
+    inputFeld.remove();
+    let inhaltsspeicher = boxWaehler.children();
+    boxWaehler.empty();
     //leeres Eingabefeld erzeugen und einfügen:
-    var text1 = "<input type='text' class='input' id='inputFeld'>";
-    boxWähler.append(text1);
+    let text1 = "<input type='text' class='input' id='inputFeld'>";
+    boxWaehler.append(text1);
 
-    const feld = boxWähler.children().eq(0);
+    const feld = boxWaehler.children().eq(0);
 
     feld.focus();
-    $("#inputFeld").attr({
+    feld.attr({
         type: "text",
         inputmode: "numeric",
         pattern: "[0-9]*"
     });
-    $("#inputFeld").keydown(
+    feld.keydown(
         function (e) {
-            if (e.key=== "Enter" || e.key === "/") {
+            if (e.key === "Enter" || e.key === "/") {
                 e.preventDefault();
-                var textUser = boxWähler.children().eq(0).val().replace("/", "");    // Der Value, also der eingegebene Text wird ausgelesen aus der Zelle und in textUser gespeichert.
-                boxWähler.empty();
-                var newUserElement = "<span style='font-size:inherit' >".concat(textUser, "</span>");
-
-                if (textUser === "") {
-                    boxWähler.append(inhaltsspeicher);
-                } else {
-                    boxWähler.append(newUserElement);
-
-                    ergebnischeck(aufgabe);//alles wird als bruch gemalt und ggf hintergrund markiert
-                    //Feedback:
-                }
-                inputMachen($(objekt).next(), aufgabe)
+                inputVerarbeiten(boxWaehler, inhaltsspeicher);
+                inputMachen($(boxWaehler).next())
             } //enter oder slash
         }
     );
-    $("#inputFeld").blur(
+    feld.blur(
         function (e) {
-            var textUser = boxWähler.children().eq(0).val();    // Der Value, also der eingegebene Text wird ausgelesen aus der Zelle und in textUser gespeichert.
-            boxWähler.empty();
-            var newUserElement = "<span style='font-size:inherit' >".concat(textUser, "</span>");
-
-            if (textUser === "") {
-                boxWähler.append(inhaltsspeicher);
-            } else {
-                boxWähler.append(newUserElement);
-
-                ergebnischeck(aufgabe);//allles wird als bruch gemalt und ggf hintergrund markiert
-                //Feedback:
-            }
+            inputVerarbeiten(boxWaehler, inhaltsspeicher);
         }
     );
 }
 
-function ergebnischeck(aufgabe) {
-    var zaehler1 = $(".zählerböxchen").children().eq(0).text();
-    var nenner1 = $(".nennerböxchen").children().eq(0).text();
+function ergebnischeck() {
+    let aufgabe = aufgabenobjekt;
+    let hinweisBox = $("#Hinweistexte");
+    let loesungsText = $("#Lösungstext");
+    let zaehlerBox = $(".zählerböxchen");
+    let nennerBox = $(".nennerböxchen");
+
+    let zaehler1 = zaehlerBox.children().eq(0).text();
+    let nenner1 = nennerBox.children().eq(0).text();
 
     //erster Bruch
     if ((isNaN(zaehler1)) || (isNaN(nenner1)) || (zaehler1 === "") || (nenner1 === "")) {
+
     } else {
         //var ergebnis = aufgabe.loesung.zaehler / aufgabe.loesung.nenner;
-        var a1 = aufgabe.brueche[0].zaehler / aufgabe.brueche[0].nenner;
-        var l1 = zaehler1 / nenner1;
-        var ort2 = $("#Lösungstext").children().find(".bruchbildboexchen"); //der 2. ist immer der unsichtbare
+        let a1 = aufgabe.brueche[0].zaehler / aufgabe.brueche[0].nenner;
+        let l1 = zaehler1 / nenner1;
+        let ort2 = loesungsText.children().find(".bruchbildboexchen"); //der 2. ist immer der unsichtbare
 
         if (ort2.length === 0) {
-            $("#Lösungstext").children().find('.bruchBox').parent().prepend("<div class='bruchbildboexchen'> </div>");  // Bild vom weiteren Bruch erschaffen
-            ort2 = $("#Lösungstext").children().find(".bruchbildboexchen");
+            loesungsText.children().find('.bruchBox').prepend("<div class='bruchbildboexchen'> </div>");  // Bild vom weiteren Bruch erschaffen
+            ort2 = loesungsText.children().find(".bruchbildboexchen");
         }
-        bruchbild(zaehler1, nenner1, ort2, 24);
+        bruchDarstellen(ort2, 24, zaehler1, nenner1);
+        let hinweis = "";
+        console.log(aufgabe)
+        console.log(zaehler1)
+        console.log(nenner1)
 
         if (a1 === l1) {
-            $(".zählerböxchen").parent().eq(0).css("background-color", "var(--richtig)");//gruen?
-            $("#Hinweistexte").empty();
-            $("#Hinweistexte").append("<p> SUPER! Für eine neue Aufgabe klicke oben links auf das Auge</p>");
+            zaehlerBox.parent().eq(0).css("background-color", "var(--richtig)");//gruen?
+            hinweisBox.empty();
+            hinweis = "SUPER!";
+            if (richtigeAntworten === 10) {
+                hinweis = "SUPER! Für schwerere Aufgaben erhöhe selbst dein Level.";
+            }
             ort2.empty();
-            //STOPPE AUFGABE und EINGABEMöglichkeit??
+            punkteHochzaehlen();
+            setTimeout(aufgabeDarstellen, 2000);
+
 
         } else {
-            $(".zählerböxchen").parent().eq(0).css("background-color", "var(--falsch)");//lilA
-            $("#Hinweistexte").empty();
-            let hinweisText1Vorhanden = zaehler1 != aufgabe.brueche[0].zaehler;
-            console.log(hinweisText1Vorhanden);
-            console.log(zaehler1);
-            console.log(aufgabe.brueche[0].zaehler);
+            let aufgabentyp = aufgabenobjekt.typ;
 
-            if (hinweisText1Vorhanden) {
-                $("#Hinweistexte").append("<p> *" + aufgabe.tipps[0] + " </p>");
-                $(".zählerböxchen").append("<sup> * </sup>");
-            }
-            let hinweisText2Vorhanden = nenner1 != aufgabe.brueche[0].nenner;
-            if (hinweisText2Vorhanden && !hinweisText1Vorhanden) {
-                $("#Hinweistexte").append("<p> *" + aufgabe.tipps[1] + " </p>");
-                $(".nennerböxchen").append("<sup> * </sup>");
+            zaehlerBox.parent().eq(0).css("background-color", "var(--falsch)");//lilA
+            hinweisBox.empty();
+            if (aufgabentyp === "bruchAusBild") {
+                let hinweisText1Vorhanden = zaehler1 !== String(aufgabe.brueche[0].zaehler);
+                if (hinweisText1Vorhanden) {
+                    hinweis = aufgabe.tipps[0];
+                    zaehlerBox.append("<sup> * </sup>");
+                }
+                let hinweisText2Vorhanden = nenner1 !== String(aufgabe.brueche[0].nenner);
+                if (hinweisText2Vorhanden && !hinweisText1Vorhanden) {
+                    hinweis = aufgabe.tipps[1];
+                    nennerBox.append("<sup> * </sup>");
+                }
+            } else if (aufgabentyp === "bruchAusAnzahl") {
 
-                //im challlenge-modus hier auch stoppen und Fehler zählen.
+                let bruchbildbox = $(".bilderFeld").find(".bruchbildboexchen");
+                const sliderWert = bruchbildbox.find(".slider-wert").text();
+                let anzahlGewaehlte = String(aufgabe.anzahlGanze * aufgabe.brueche[0].zaehler / aufgabe.brueche[0].nenner);
+
+                if (sliderWert === anzahlGewaehlte
+                    || sliderWert === anzahlGewaehlte / 2
+                    || sliderWert === anzahlGewaehlte * 2) {
+                    hinweis = aufgabe.tipps[1];
+                } else {
+                    hinweis = aufgabe.tipps[0];
+                }
+                if(aufgabe.anzahlGanze/aufgabe.brueche[0].nenner<=1){
+                    hinweis = aufgabe.tipps[2];
+                }
+            } else {
+                hinweis = aufgabe.tipps[0];
+                anzahlRAndomAufgabenFalsch++;
+                if (anzahlRAndomAufgabenFalsch % 10 === 0) {
+                    hinweis = aufgabe.tipps[1];
+                }
             }
+
+
+        }
+        hinweisBox.append("<p> " + hinweis + "</p>");
+        setTimeout(function () {
+            hinweisBox.empty();
+        }, 2000);
+    }
+
+
+}
+
+let anzahlRAndomAufgabenFalsch = 0;
+
+function pruefeAnzahl() {
+    //fuer aufgabentyp  === "anzahlAusMenge", nur dann existiert der button der diese funktion auslöst
+    let zaehler = aufgabenobjekt.brueche[0].zaehler;
+    let nenner = aufgabenobjekt.brueche[0].nenner;
+    let anzahlGanze = aufgabenobjekt.anzahlGanze;
+
+    const anteilBruchstueck = anzahlGanze / nenner;
+    const anzahlStueckeGefaerbtSoll = anteilBruchstueck * zaehler;
+
+    const sliderWert = $("#aufgabenFeld").find(".slider-wert").text();
+
+    let hinweis = "!";
+    let hinweisBox = $("#Hinweistexte");
+
+    console.log(gewaehlteAnzahl)
+    console.log(anzahlStueckeGefaerbtSoll)
+    console.log(sliderWert)
+    console.log(nenner)
+
+    if (gewaehlteAnzahl === anzahlStueckeGefaerbtSoll) {
+        hinweis = "Klasse!";
+        setTimeout(function () {
+            hinweisBox.empty();
+            aufgabeDarstellen();
+            punkteHochzaehlen();
+            gewaehlteAnzahl = 0;
+
+        }, 2000);
+
+    } else if (sliderWert === String(nenner)
+        || sliderWert === String(nenner / 2)
+        || sliderWert === String(nenner * 2)) {
+        if(aufgabenobjekt.anzahlGanze/nenner>1) {
+            hinweis = aufgabenobjekt.tipps[1];
+        }else{
+            hinweis = aufgabenobjekt.tipps[2];
+        }
+    } else {
+        hinweis = aufgabenobjekt.tipps[0];
+    }
+    //fuer falsche antworten bei level 10 auchk hinweistext anzeigen
+    if(aufgabenobjekt.typ==="" &&gewaehlteAnzahl !== anzahlStueckeGefaerbtSoll){
+        hinweis = aufgabenobjekt.tipps[0];
+        anzahlRAndomAufgabenFalsch++;
+        if (anzahlRAndomAufgabenFalsch % 10 === 0) {
+            hinweis = aufgabenobjekt.tipps[1];
         }
     }
 
+    hinweisBox.append("<p>" + hinweis + "</p>");
+    setTimeout(function () {
+        hinweisBox.empty();
+    }, 2000);
+
+
 }
+
+
 
 

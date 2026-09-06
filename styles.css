@@ -3,8 +3,13 @@
     padding: 0;
     box-sizing: border-box;
     font-size: 13pt;
-    font-family: Roboto, Helvetica, Times New Roman, serif;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
     color: var(--metall6-bg)
+}
+
+
+svg {
+    opacity: 0.8;
 }
 
 :root {
@@ -36,59 +41,128 @@
     --richtig: #d4e3d4;
     --neutral: yellow;
 
+    --weisser-schatten: #fcfcff;
     --heller-schatten: #9699c0;
     --dunkler-schatten: #515177;
+    /* NEUE FARBEN */
+    --bg: #f4f6fb;
+    --surface: #ffffff;
+
+    --primary: #5068a6;
+    --primary-dark: #40578d;
+
+    --text: #293754;
+    --text-muted: #71809e;
+
+    --border: #dce2ef;
+
+    --correct: #d9eadb;
+    --wrong: #f0d5d5;
 }
 
 body {
-    padding-bottom: 10pt;
-    background-color: #202020;
+    margin: 0;
+    padding: 0 0 30px;
+    background: var(--bg);
+    color: var(--text);
 }
 
 h1 {
-    display: inline-flex;
+    margin: 20px 0 24px;
     text-align: center;
-    justify-content: center;
-    align-items: center;
-    font-size: 20pt;
-    width: 100%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--text);
 }
 
 #menu {
     display: grid;
-    grid-template-columns: 20% 90%;
+    grid-template-columns: 220px 1fr;
+    gap: 20px;
+
+    width: 100%;
 }
+
+#Hinweistexte {
+    position: fixed;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    z-index: 1000;
+    pointer-events: none;
+}
+
+#Hinweistexte p {
+    margin: 0;
+    padding: 22px 40px;
+
+    max-width: 80vw;
+
+    border-radius: 14px;
+
+    background: white;
+    border: 2px solid var(--primary);
+
+    box-shadow: 0 8px 30px rgba(40, 55, 90, 0.20);
+
+    color: var(--text);
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+
+    text-align: center;
+}
+
 
 /* mittig zentrierte Bildchen von Brüchen (Kreisscheiben) */
 .bilderFeld .bruchbildboexchen {
     display: flex;
-    height: 100%;
+    flex-wrap: wrap;
     justify-content: center;
-    border-radius: 10pt;
-    background-color: var(--metall1-bg);
-    margin-left: 3pt;
-    /* background-color: #3a537e; *//* blau 32466F blau 2 202F55  grau 282828*/
+    align-items: center;
+    gap: 5px;
+
+    padding: 16px;
+
+    background: transparent;
+}
+
+
+/*erstes element soll regler sein und ganz rüber gehen*/
+.bilderFeld .bruchbildboexchen p {
+    width: 100%;
+    margin-bottom: 0px;
+}
+
+
+
+.zählerböxchen,
+.nennerböxchen {
+    min-height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 1.5rem;
+    color: var(--text);
 }
 
 .zählerböxchen {
-    border-bottom: 5px var(--metall6-bg) solid;
-    text-align: center;
-    font-size: 24pt;
-    min-height: 34pt;
-    width: 100%;
+    border-bottom: 2px solid var(--primary);
 }
 
+.zählerböxchen,
 .nennerböxchen {
-    font-size: 24pt;
-    min-height: 34pt;
     width: 100%;
-    text-align: center;
 }
 
 /* Bruchaufgaben-zeilen styling (nebeneinander zb) */
 #aufgabenFeld {
-    padding: 0pt;
-    margin-top: 10pt;
+    width: 100%;
 }
 
 #aufgabenFeld > p {
@@ -96,10 +170,17 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
+    min-height: 220px;
+    padding: 32px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+
+    box-shadow: 0 4px 16px rgba(50, 70, 110, 0.08);
+
     text-align: center;
-    background-color: var(--metall1-bg);
-    padding: 10pt 0pt 10pt 0pt;
-    border-radius: 12pt;
 }
 
 #aufgabenFeld > p > .bruchbildboexchen {
@@ -108,16 +189,29 @@ h1 {
 
 /* bruch-Eingabe-Boxen - styling */
 .bruchBox {
-    display: block;
     width: 100px;
-    border-radius: 5pt;
-    background-color: var(--metall3-bg);
-    box-shadow: -1px -1px 6px var(--metall3-line), 1px 1px 6px var(--metall4-line);
-    padding: 5pt;
+    min-height: 70px;
 
+    margin: 8px auto 0;
+
+    padding: 8px;
+
+    background: #fff;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+
+    box-shadow: none;
 }
-
+.bruchBox:focus-within {
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 3px rgba(80, 104, 166, 0.15);
+}
 /*Elemente der Aufgabenübersicht (links bzw oben)*/
+
+#Aufgabenübersicht{
+    text-align: center;
+    margin-bottom: 2px;
+}
 .menüicon:hover {
     background-color: yellow;
 }
@@ -145,20 +239,11 @@ h1 {
 }
 
 
-
 .page {
     color: black;
     width: auto;
     margin: 0 auto;
     background-color: var(--metall3-bg); /*202020 */
-}
-
-
-.rechtepage {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-    height: 90%;
 }
 
 
@@ -173,18 +258,30 @@ h1 {
 }
 
 .kreisDiagramm {
-    height: 100vw;
-    max-width: 400pt;
-    max-height: 400pt;
+    width: min(45vw, 420px);
+    height: min(45vw, 420px);
 }
 
+#punkte {
+    position: fixed;
+    top: 20px;
+    right: 30px;
+
+    font-size: 28pt;
+    font-weight: 500;
+
+    color: var(--primary);
+
+    line-height: 1;
+}
 
 /* schmaler desktop/ Handy hochkant*/
 @media screen and (max-width: 450px) {
 
-    *{
+    * {
         font-size: 10pt;
     }
+
     body {
         width: 100%;
         /*  background-color: red;*/
@@ -207,8 +304,27 @@ h1 {
         width: 20vw;
     }
 
+    #punkte {
+        top: 20px;
+        right: 10px;
+        font-size: 20pt;
+    }
+    #Hinweistexte p {
+        padding: 18px 24px;
+        max-width: 85vw;
+        font-size: 1.3rem;
+    }
 }
 
+@media screen and (max-width: 600px) {
+    #menu {
+        grid-template-columns: 1fr;
+    }
+    .kreisDiagramm {
+        width: 75vw;
+        height: 75vw;
+    }
+}
 
 /* Tablet Styles oder handy breitbild*/
 @media screen and (min-width: 450px)and (max-width: 961px) {
@@ -220,6 +336,7 @@ h1 {
         height: 50pt;
         width: 50pt;
     }
+
 }
 
 /* Desktop Styles*/
@@ -234,11 +351,137 @@ h1 {
     }
 }
 
-
 /* KREIS design */
-
 .kreisDiagramm {
 
 }
 
+/* SLIDER */
+
+.log-slider {
+    position: relative;
+    width: min(80%, 700px);
+    height: 36px;
+    margin: 20px auto;
+    cursor: pointer;
+}
+
+.log-slider-bahn {
+    position: absolute;
+    top: 16px;
+    left: 0;
+
+    width: 100%;
+    height: 4px;
+
+    border-radius: 4px;
+    background: var(--border);
+}
+
+.log-slider-knopf {
+    position: absolute;
+    top: 8px;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 50%;
+    background: var(--primary);
+
+    transform: translateX(-50%);
+    cursor: grab;
+
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.auswerten-button {
+    display: block;
+    align-self: flex-end;
+    width: auto;
+    min-width: 120px;
+    margin-top: 6px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page {
+    width: min(100% - 32px, 1100px);
+    margin: 0 auto;
+    background: transparent;
+}
+
+
+button,
+.weiter,
+.auswerten-button {
+    border: none;
+    border-radius: 8px;
+
+    padding: 10px 24px;
+
+    background: var(--primary);
+    color: white;
+
+    font-size: 1rem;
+    cursor: pointer;
+
+    transition: background 0.15s ease,
+    transform 0.1s ease;
+}
+
+button:hover,
+.weiter:hover,
+.auswerten-button:hover {
+    background: var(--primary-dark);
+}
+
+button:active,
+.weiter:active,
+.auswerten-button:active {
+    transform: translateY(1px);
+}
+
+
+
+#Aufgabentext .bruchBox {
+    display: block;
+    width: 100px;
+    margin: 0 auto;
+
+    border-radius: 5pt;
+    background-color: var(--metall3-bg);
+    box-shadow: -1px -1px 6px var(--metall3-line),
+    1px 1px 6px var(--metall4-line);
+    padding: 5pt;
+}
+
+#breite-slider{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bilderFeld > p{    text-align: center;
+}
+.bilderFeld > p label {
+    display: block;
+    margin-top: 2px;
+}
+
+.bruchbildboexchen  > p{    text-align: center;
+}
+
+.bruchbildboexchen  > p > label {
+    display: block;
+    margin-top: 2px;
+}
+
+.bruchbildboexchen {
+    margin-left: auto;
+    margin-right: auto;
+}
+.kreisDiagramm{
+    margin-left: auto;
+    margin-right: auto;
+}
 
